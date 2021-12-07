@@ -1,33 +1,22 @@
-import { ResponsiveCalendar } from "@nivo/calendar";
+import { ResponsiveTimeRange } from "@nivo/calendar";
 import { fixDate } from "#/utils/fixDate";
 import { get, set } from "#/utils/cache";
 import { BASE_URL } from "#/utils/constant";
 
-export default function Calendar({ data }) {
+export default function Calendar({ data: { sortedDaily, start, end } }) {
   return (
     <div style={{ height: "18rem" }}>
-      <ResponsiveCalendar
-        data={data}
-        from="2021-01-01"
-        to="2021-12-31"
+      <ResponsiveTimeRange
+        data={sortedDaily}
+        from={start}
+        to={end}
         emptyColor="#f7fafb"
+        margin={{ top: 32, right: 20, bottom: 20, left: 20 }}
         colors={["#BEE3F8", "#90CDF4", "#63B3ED", "#4299E1"]}
-        monthBorderWidth={2}
-        monthBorderColor="#ffffff"
+        monthLegendOffset={14}
+        monthLegendPosition="before"
         dayBorderWidth={2}
         dayBorderColor="#ffffff"
-        legends={[
-          {
-            anchor: "bottom-right",
-            direction: "row",
-            translateY: 36,
-            itemCount: 4,
-            itemWidth: 42,
-            itemHeight: 36,
-            itemsSpacing: 14,
-            itemDirection: "right-to-left",
-          },
-        ]}
       />
     </div>
   );
@@ -36,7 +25,7 @@ export default function Calendar({ data }) {
 export async function getServerSideProps() {
   const cached = get("daily");
   if (cached) {
-    return { props: { data: cached } };
+    return { props: { data: cached.data } };
   }
 
   const res = await fetch(`${BASE_URL}/hourly`);
@@ -47,7 +36,23 @@ export async function getServerSideProps() {
     return acc.concat({ day: fixDate(todays_date), value: total });
   }, []);
 
-  set("daily", daily);
+  const sortedDaily = daily.sort(
+    (a, b) =>
+      new Date(a.day).getMilliseconds() - new Date(b.day).getMilliseconds()
+  );
 
-  return { props: { data: daily } };
+  const end = new Date(sortedDaily.at(-1).day);
+  end.setMonth(end.getMonth() + 1);
+
+  const result = {
+    sortedDaily,
+    start: "2021-12-01",
+    end: fixDate(`${end.getFullYear()}-${end.getMonth()}-${end.getDate()}`),
+  };
+
+  set("daily", { data: result });
+
+  return {
+    props: { data: result },
+  };
 }
