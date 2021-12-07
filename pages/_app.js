@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import Nav from "#/components/nav.js";
 import styles from "#/styles/index.module.css";
 import "#/styles/globals.css";
+import "@fontsource/rubik/600.css";
 
 const pages = [
   { name: "Total", route: "/" },
@@ -15,6 +16,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <div className={styles.container}>
       <div className={styles.backdrop}></div>
+      <h1 className={styles.title}>TEKNUM ANALYTICS</h1>
       <div className={styles.box}>
         <Nav pages={pages} active={router.asPath} />
         <div className={styles.box__content}>
