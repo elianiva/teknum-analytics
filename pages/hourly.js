@@ -17,7 +17,7 @@ export default function Hourly({ data }) {
           stacked: true,
           reverse: false,
         }}
-        curve="natural"
+        curve="monotoneX"
         axisTop={null}
         axisRight={null}
         axisBottom={{
@@ -38,7 +38,17 @@ export default function Hourly({ data }) {
           legendOffset: -40,
           legendPosition: "middle",
         }}
-        colors={{ scheme: "nivo" }}
+        colors={[
+          "#BEE3F8",
+          "#90CDF4",
+          "#63B3ED",
+          "#4299E1",
+          "#3182CE",
+          "#2B6CB0",
+          "#2C5282",
+          "#2A4365",
+          "#1A365D",
+        ]}
         pointSize={4}
         pointColor={{ theme: "background" }}
         pointBorderWidth={2}
