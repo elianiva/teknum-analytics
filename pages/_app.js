@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
-import Nav from "#/components/nav.js";
+import Nav from "#/components/nav";
+import SEO from "#/components/seo";
 import styles from "#/styles/index.module.css";
 import "#/styles/globals.css";
 import "@fontsource/rubik/400.css";
@@ -30,16 +31,19 @@ export default function MyApp({ Component, pageProps }) {
   }, [router]);
 
   return (
-    <div className={styles.container}>
-      <div className={styles.backdrop}></div>
-      <h1 className={styles.title}>TEKNUM ANALYTICS</h1>
-      <div className={styles.box}>
-        {isLoading && <div className={styles.loading}>Loading data...</div>}
-        <Nav pages={pages} active={router.asPath} />
-        <div className={styles.box__content}>
-          <Component {...pageProps} />
+    <>
+      <SEO />
+      <div className={styles.container}>
+        <div className={styles.backdrop}></div>
+        <h1 className={styles.title}>TEKNUM ANALYTICS</h1>
+        <div className={styles.box}>
+          {isLoading && <div className={styles.loading}>Loading data...</div>}
+          <Nav pages={pages} active={router.asPath} />
+          <div className={styles.box__content}>
+            <Component {...pageProps} />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
