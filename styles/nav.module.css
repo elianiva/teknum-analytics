@@ -7,8 +7,10 @@
 .nav__item {
   display: flex;
   align-items: center;
-  font-family: sans-serif;
+  font-family: "Rubik", sans-serif;
   padding: 0 1rem;
+  text-decoration: none;
+  color: #242424;
 }
 
 .nav__item_active {

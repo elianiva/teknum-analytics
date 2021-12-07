@@ -1,5 +1,7 @@
 import { ResponsiveLine } from "@nivo/line";
 import { fixDate } from "#/utils/fixDate";
+import { get, set } from "#/utils/cache";
+import { BASE_URL } from "#/utils/constant";
 
 export default function Hourly({ data }) {
   return (
@@ -104,10 +106,15 @@ const HOUR_MAP = {
 };
 
 export async function getServerSideProps() {
-  const res = await fetch("https://teknologi-umum-captcha.fly.dev/hourly");
+  const cached = get("hourly");
+  if (cached) {
+    return { props: { data: cached } };
+  }
+
+  const res = await fetch(`${BASE_URL}/hourly`);
   const data = await res.json();
 
-  const processed = data.reduce((acc, { todays_date, ...hourly }) => {
+  const hourly = data.reduce((acc, { todays_date, ...hourly }) => {
     return acc.concat({
       id: fixDate(todays_date),
       data: Object.keys(hourly).map((key) => ({
@@ -117,5 +124,7 @@ export async function getServerSideProps() {
     });
   }, []);
 
-  return { props: { data: processed } };
+  set("hourly", hourly);
+
+  return { props: { data: hourly } };
 }

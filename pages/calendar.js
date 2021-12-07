@@ -1,5 +1,7 @@
 import { ResponsiveCalendar } from "@nivo/calendar";
 import { fixDate } from "#/utils/fixDate";
+import { get, set } from "#/utils/cache";
+import { BASE_URL } from "#/utils/constant";
 
 export default function Calendar({ data }) {
   return (
@@ -32,13 +34,20 @@ export default function Calendar({ data }) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch("https://teknologi-umum-captcha.fly.dev/hourly");
+  const cached = get("daily");
+  if (cached) {
+    return { props: { data: cached } };
+  }
+
+  const res = await fetch(`${BASE_URL}/hourly`);
   const data = await res.json();
 
   const daily = data.reduce((acc, { todays_date, ...hourly }) => {
     const total = Object.values(hourly).reduce((acc, curr) => acc + curr, 0);
     return acc.concat({ day: fixDate(todays_date), value: total });
   }, []);
+
+  set("daily", daily);
 
   return { props: { data: daily } };
 }
