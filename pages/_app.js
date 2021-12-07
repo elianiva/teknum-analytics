@@ -19,7 +19,7 @@ function MyApp({ Component, pageProps }) {
       <div className={styles.box}>
         <Nav pages={pages} active={router.asPath} />
         <div className={styles.box__content}>
-          <Component {...pageProps} />;
+          <Component {...pageProps} />
         </div>
       </div>
     </div>
