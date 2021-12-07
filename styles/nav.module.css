@@ -1,0 +1,16 @@
+.box__nav {
+  min-height: 3rem;
+  background-color: #f7fafb;
+  display: flex;
+}
+
+.nav__item {
+  display: flex;
+  align-items: center;
+  font-family: sans-serif;
+  padding: 0 1rem;
+}
+
+.nav__item_active {
+  background-color: #ffffff;
+}
