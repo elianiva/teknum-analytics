@@ -1,8 +1,9 @@
 import { ResponsiveCalendar } from "@nivo/calendar";
+import { fixDate } from "#/utils/fixDate";
 
 export default function Calendar({ data }) {
   return (
-    <div style={{ height: "16rem" }}>
+    <div style={{ height: "18rem" }}>
       <ResponsiveCalendar
         data={data}
         from="2021-01-01"
@@ -33,12 +34,6 @@ export default function Calendar({ data }) {
 export async function getServerSideProps() {
   const res = await fetch("https://teknologi-umum-captcha.fly.dev/hourly");
   const data = await res.json();
-
-  const fixDate = (str) => {
-    const [year, month, day] = str.split("-");
-    const properDay = parseInt(day) < 10 ? `0${day}` : day;
-    return [year, month, properDay].join("-");
-  };
 
   const daily = data.reduce((acc, { todays_date, ...hourly }) => {
     const total = Object.values(hourly).reduce((acc, curr) => acc + curr, 0);

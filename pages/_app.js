@@ -5,7 +5,6 @@ import "#/styles/globals.css";
 
 const pages = [
   { name: "Total", route: "/" },
-  { name: "Users", route: "/users" },
   { name: "Hourly", route: "/hourly" },
   { name: "Calendar", route: "/calendar" },
 ];
