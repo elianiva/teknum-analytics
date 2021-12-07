@@ -1,0 +1,43 @@
+.list {
+  font-family: "Rubik", sans-serif;
+  font-size: 1.125rem;
+  width: 100%;
+}
+
+.list__header {
+  text-align: left;
+}
+
+.list__no {
+  text-align: right;
+}
+
+.list__item {
+  width: 100%;
+  line-height: 2.25em;
+  padding: 0 1rem;
+  border-radius: 1rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.list__username {
+  display: inline-block;
+  text-decoration: none;
+  color: #2b6cb0;
+  margin-left: 0.5em;
+}
+
+.list__no_username {
+  margin-left: 0.5em;
+  display: inline-block;
+  text-decoration: none;
+  color: #cbd5e0;
+}
+
+.list__score {
+  display: inline-block;
+  right: 0;
+}

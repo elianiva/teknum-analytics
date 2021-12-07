@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 
 const pages = [
   { name: "Total", route: "/" },
+  { name: "Users", route: "/users" },
   { name: "Hourly", route: "/hourly" },
   { name: "Calendar", route: "/calendar" },
 ];

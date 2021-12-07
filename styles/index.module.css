@@ -30,7 +30,7 @@
 .box {
   position: relative;
   background-color: #ffffff;
-  margin: 0 auto;
+  margin: 0 auto 4rem;
   min-width: 80%;
   max-width: 90%;
   box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.2);
