@@ -2,22 +2,26 @@
   font-family: "Rubik", sans-serif;
   font-size: 1.125rem;
   width: 100%;
+  border-collapse: collapse;
 }
 
 .list__header {
   text-align: left;
+  line-height: 2em;
 }
 
-.list__no {
+.list__header:last-child {
   text-align: right;
 }
 
-.list__item {
+.list__no {
+  width: 2rem;
+}
+
+.list__name {
   width: 100%;
   line-height: 2.25em;
-  padding: 0 1rem;
   border-radius: 1rem;
-  cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
@@ -28,6 +32,11 @@
   text-decoration: none;
   color: #2b6cb0;
   margin-left: 0.5em;
+  cursor: pointer;
+}
+
+.list__username:hover {
+  text-decoration: underline;
 }
 
 .list__no_username {
@@ -37,7 +46,10 @@
   color: #cbd5e0;
 }
 
-.list__score {
-  display: inline-block;
-  right: 0;
+.list__messages {
+  text-align: right;
+}
+
+.list__messages span {
+  display: block;
 }

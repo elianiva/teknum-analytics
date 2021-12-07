@@ -9,15 +9,15 @@ export default function Users({ data }) {
         <tr>
           <th className={styles.list__header}>No</th>
           <th className={styles.list__header}>Name</th>
-          <th className={styles.list__header}>Score</th>
+          <th className={styles.list__header}>Messages</th>
         </tr>
       </thead>
       <tbody>
         {data.map(({ username, display_name, counter }, idx) => (
           <tr key={idx}>
             <td className={styles.list__no}>{idx + 1}.</td>
-            <td className={styles.list__item}>
-              <span>
+            <td className={styles.list__name}>
+              <span style={{ whiteSpace: "nowrap" }}>
                 {display_name}
                 {username ? (
                   <a
@@ -33,8 +33,8 @@ export default function Users({ data }) {
                 )}
               </span>
             </td>
-            <td>
-              <span className={styles.list__score}>{counter}</span>
+            <td className={styles.list__messages}>
+              <span>{counter}</span>
             </td>
           </tr>
         ))}
