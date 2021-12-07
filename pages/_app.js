@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
-import Nav from "../components/nav.js";
-import styles from "../styles/index.module.css";
-import "../styles/globals.css";
+import Nav from "#/components/nav.js";
+import styles from "#/styles/index.module.css";
+import "#/styles/globals.css";
 
 const pages = [
   { name: "Total", route: "/" },
