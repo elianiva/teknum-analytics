@@ -2,6 +2,11 @@
   min-height: 3rem;
   background-color: #edf2f7;
   display: flex;
+  overflow-x: auto;
+}
+
+.box__nav::-webkit-scrollbar {
+  display: none;
 }
 
 .nav__item {
@@ -11,6 +16,7 @@
   padding: 0 1rem;
   text-decoration: none;
   color: #242424;
+  white-space: nowrap;
 }
 
 .nav__item_active {

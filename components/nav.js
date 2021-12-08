@@ -12,7 +12,7 @@ export default function Nav({ pages, active }) {
               active === route && styles.nav__item_active,
             ].join(" ")}
           >
-            {name}
+            <span>{name}</span>
           </a>
         </Link>
       ))}

@@ -12,6 +12,7 @@
 
 .list__header:last-child {
   text-align: right;
+  width: 3rem;
 }
 
 .list__no {
