@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: center;
   height: 18rem;
+  text-align: center;
 }
 
 .notice {
@@ -14,5 +15,5 @@
 
 .total {
   font-family: "Rubik";
-  font-size: 4rem;
+  font-size: clamp(2.5rem, calc(5vw + 1rem), 4rem);
 }

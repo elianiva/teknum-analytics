@@ -18,6 +18,10 @@
   width: 2rem;
 }
 
+.list__header:nth-child(2) {
+  padding-left: 0.5rem;
+}
+
 .list__name {
   width: 100%;
   line-height: 2.25em;
@@ -25,6 +29,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
+  padding-left: 0.5rem;
 }
 
 .list__username {

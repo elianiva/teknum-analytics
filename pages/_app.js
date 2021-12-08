@@ -8,10 +8,11 @@ import "@fontsource/rubik/600.css";
 import { useEffect, useState } from "react";
 
 const pages = [
-  { name: "Total", route: "/" },
-  { name: "Users", route: "/users" },
-  { name: "Hourly", route: "/hourly" },
-  { name: "Calendar", route: "/calendar" },
+  { name: "#️⃣  Total", route: "/" },
+  { name: "👤 Users", route: "/users" },
+  { name: "🔮 Dukun", route: "/dukun" },
+  { name: "🕒 Hourly", route: "/hourly" },
+  { name: "📅 Calendar", route: "/calendar" },
 ];
 
 export default function MyApp({ Component, pageProps }) {
