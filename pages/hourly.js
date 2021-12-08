@@ -63,9 +63,13 @@ export default function Hourly({ data }) {
             day: "numeric",
             year: "numeric",
           });
-          const messages = point.data.y;
           return (
-            <div className={styles.tooltip}>
+            <div
+              className={styles.tooltip}
+              style={{
+                bottom: point.data.y > 300 ? "-5.5rem" : 0,
+              }}
+            >
               <span>{date}</span>
               <span
                 style={{
@@ -74,7 +78,7 @@ export default function Hourly({ data }) {
                   marginTop: "0.25rem",
                 }}
               >
-                <b>{messages}</b> msg
+                <b>{point.data.y}</b> msg
               </span>
             </div>
           );
