@@ -41,7 +41,7 @@ export async function getServerSideProps() {
       new Date(a.day).getMilliseconds() - new Date(b.day).getMilliseconds()
   );
 
-  const end = new Date(sortedDaily.at(-1).day);
+  const end = new Date(sortedDaily[sortedDaily.length - 1].day);
   end.setMonth(end.getMonth() + 1);
 
   const result = {
