@@ -6,7 +6,7 @@ import styles from "#/styles/tooltip.module.css";
 
 export default function Hourly({ data }) {
   return (
-    <div style={{ height: "20rem" }}>
+    <div style={{ height: "22rem" }}>
       <ResponsiveLine
         data={data}
         margin={{ top: 20, right: 40, bottom: 40, left: 60 }}
@@ -25,8 +25,7 @@ export default function Hourly({ data }) {
           orient: "bottom",
           tickSize: 5,
           tickPadding: 5,
-          tickRotation: 0,
-          legend: "time",
+          tickRotation: 45,
           legendOffset: 36,
           legendPosition: "middle",
         }}
@@ -36,7 +35,7 @@ export default function Hourly({ data }) {
           tickPadding: 5,
           tickRotation: 0,
           legend: "messages",
-          legendOffset: -40,
+          legendOffset: -45,
           legendPosition: "middle",
         }}
         colors={[
@@ -68,6 +67,7 @@ export default function Hourly({ data }) {
               className={styles.tooltip}
               style={{
                 bottom: point.data.y > 300 ? "-5.5rem" : 0,
+                right: "5rem",
               }}
             >
               <span>{date}</span>

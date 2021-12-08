@@ -12,7 +12,6 @@
 
 .list__header:last-child {
   text-align: right;
-  width: 3rem;
 }
 
 .list__no {
@@ -52,10 +51,11 @@
   color: #cbd5e0;
 }
 
-.list__messages {
+.list__score {
   text-align: right;
 }
 
-.list__messages span {
+.list__score span {
   display: block;
+  white-space: nowrap;
 }

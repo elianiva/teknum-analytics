@@ -5,7 +5,7 @@ import { BASE_URL } from "#/utils/constant";
 
 export default function Calendar({ data: { sortedDaily, start, end } }) {
   return (
-    <div style={{ height: "18rem" }}>
+    <div style={{ height: "20rem" }}>
       <ResponsiveTimeRange
         data={sortedDaily}
         from={start}

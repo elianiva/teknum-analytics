@@ -1,13 +1,7 @@
 import { BASE_URL } from "#/utils/constant";
 import { get, set } from "#/utils/cache";
+import { getMedal } from "#/utils/medal";
 import styles from "#/styles/users.module.css";
-
-const getMedal = (rank) => {
-  if (rank === 1) return " 🥇";
-  if (rank === 2) return " 🥈";
-  if (rank === 3) return " 🥉";
-  return "";
-};
 
 export default function Dukun({ data }) {
   return (
@@ -41,7 +35,7 @@ export default function Dukun({ data }) {
                 {getMedal(idx + 1)}
               </span>
             </td>
-            <td className={styles.list__messages}>
+            <td className={styles.list__score}>
               <span>🪙 {points}</span>
             </td>
           </tr>
