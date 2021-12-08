@@ -2,7 +2,14 @@ import { BASE_URL } from "#/utils/constant";
 import { get, set } from "#/utils/cache";
 import styles from "#/styles/users.module.css";
 
-export default function Users({ data }) {
+const getMedal = (rank) => {
+  if (rank === 1) return " 🥇";
+  if (rank === 2) return " 🥈";
+  if (rank === 3) return " 🥉";
+  return "";
+};
+
+export default function Dukun({ data }) {
   return (
     <table className={styles.list}>
       <thead>
@@ -31,10 +38,11 @@ export default function Users({ data }) {
                 ) : (
                   <span className={styles.list__no_username}>no username</span>
                 )}
+                {getMedal(idx + 1)}
               </span>
             </td>
             <td className={styles.list__messages}>
-              <span>{points}</span>
+              <span>🪙 {points}</span>
             </td>
           </tr>
         ))}

@@ -2,6 +2,13 @@ import { BASE_URL } from "#/utils/constant";
 import { get, set } from "#/utils/cache";
 import styles from "#/styles/users.module.css";
 
+const getMedal = (rank) => {
+  if (rank === 1) return " 🥇";
+  if (rank === 2) return " 🥈";
+  if (rank === 3) return " 🥉";
+  return "";
+};
+
 export default function Users({ data }) {
   return (
     <table className={styles.list}>
@@ -31,10 +38,11 @@ export default function Users({ data }) {
                 ) : (
                   <span className={styles.list__no_username}>no username</span>
                 )}
+                {getMedal(idx + 1)}
               </span>
             </td>
             <td className={styles.list__messages}>
-              <span>{counter}</span>
+              <span>💬 {counter}</span>
             </td>
           </tr>
         ))}
