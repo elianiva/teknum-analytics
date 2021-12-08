@@ -2,19 +2,20 @@ import { ResponsiveLine } from "@nivo/line";
 import { fixDate } from "#/utils/fixDate";
 import { get, set } from "#/utils/cache";
 import { BASE_URL } from "#/utils/constant";
+import styles from "#/styles/tooltip.module.css";
 
 export default function Hourly({ data }) {
   return (
     <div style={{ height: "20rem" }}>
       <ResponsiveLine
         data={data}
-        margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
+        margin={{ top: 20, right: 40, bottom: 40, left: 60 }}
         xScale={{ type: "point" }}
         yScale={{
           type: "linear",
           min: "auto",
           max: "auto",
-          stacked: true,
+          stacked: false,
           reverse: false,
         }}
         curve="monotoneX"
@@ -50,39 +51,42 @@ export default function Hourly({ data }) {
           "#1A365D",
         ]}
         pointSize={4}
-        pointColor={{ theme: "background" }}
         pointBorderWidth={2}
         pointBorderColor={{ from: "serieColor" }}
         pointLabelYOffset={-12}
         useMesh={true}
         enableGridX={false}
         enableGridY={false}
-        legends={[
-          {
-            anchor: "bottom-right",
-            direction: "column",
-            justify: false,
-            translateX: 100,
-            translateY: 0,
-            itemsSpacing: 0,
-            itemDirection: "left-to-right",
-            itemWidth: 80,
-            itemHeight: 20,
-            itemOpacity: 0.75,
-            symbolSize: 12,
-            symbolShape: "circle",
-            symbolBorderColor: "rgba(0, 0, 0, .5)",
-            effects: [
-              {
-                on: "hover",
-                style: {
-                  itemBackground: "rgba(0, 0, 0, .03)",
-                  itemOpacity: 1,
-                },
-              },
-            ],
+        tooltip={({ point }) => {
+          const date = new Date(point.serieId).toLocaleDateString("en-UK", {
+            month: "long",
+            day: "numeric",
+            year: "numeric",
+          });
+          const messages = point.data.y;
+          return (
+            <div className={styles.tooltip}>
+              <span>{date}</span>
+              <span
+                style={{
+                  display: "block",
+                  textAlign: "center",
+                  marginTop: "0.25rem",
+                }}
+              >
+                <b>{messages}</b> msg
+              </span>
+            </div>
+          );
+        }}
+        theme={{
+          tooltip: {
+            container: {
+              fontFamily: '"Rubik", sans-serif',
+              fontWeight: 400,
+            },
           },
-        ]}
+        }}
       />
     </div>
   );
