@@ -15,8 +15,8 @@ export default function Hourly({ data }) {
           type: "linear",
           min: "auto",
           max: "auto",
-          stacked: false,
-          reverse: false,
+          stacked: true,
+          reverse: false
         }}
         curve="monotoneX"
         axisTop={null}
@@ -27,7 +27,7 @@ export default function Hourly({ data }) {
           tickPadding: 5,
           tickRotation: 45,
           legendOffset: 36,
-          legendPosition: "middle",
+          legendPosition: "middle"
         }}
         axisLeft={{
           orient: "left",
@@ -36,21 +36,11 @@ export default function Hourly({ data }) {
           tickRotation: 0,
           legend: "messages",
           legendOffset: -45,
-          legendPosition: "middle",
+          legendPosition: "middle"
         }}
-        colors={[
-          "#BEE3F8",
-          "#90CDF4",
-          "#63B3ED",
-          "#4299E1",
-          "#3182CE",
-          "#2B6CB0",
-          "#2C5282",
-          "#2A4365",
-          "#1A365D",
-        ]}
-        pointSize={4}
-        pointBorderWidth={2}
+        colors={{ scheme: "purple_blue" }}
+        pointSize={0}
+        pointBorderWidth={1}
         pointBorderColor={{ from: "serieColor" }}
         pointLabelYOffset={-12}
         useMesh={true}
@@ -60,14 +50,14 @@ export default function Hourly({ data }) {
           const date = new Date(point.serieId).toLocaleDateString("en-UK", {
             month: "long",
             day: "numeric",
-            year: "numeric",
+            year: "numeric"
           });
           return (
             <div
               className={styles.tooltip}
               style={{
                 bottom: point.data.y > 300 ? "-5.5rem" : 0,
-                right: "5rem",
+                right: "5rem"
               }}
             >
               <span>{date}</span>
@@ -75,7 +65,7 @@ export default function Hourly({ data }) {
                 style={{
                   display: "block",
                   textAlign: "center",
-                  marginTop: "0.25rem",
+                  marginTop: "0.25rem"
                 }}
               >
                 <b>{point.data.y}</b> msg
@@ -87,9 +77,9 @@ export default function Hourly({ data }) {
           tooltip: {
             container: {
               fontFamily: '"Rubik", sans-serif',
-              fontWeight: 400,
-            },
-          },
+              fontWeight: 400
+            }
+          }
         }}
       />
     </div>
@@ -120,7 +110,7 @@ const HOUR_MAP = {
   twenty_hour: "03:00",
   twentyone_hour: "04:00",
   twentytwo_hour: "05:00",
-  twentythree_hour: "06:00",
+  twentythree_hour: "06:00"
 };
 
 export async function getServerSideProps() {
@@ -137,8 +127,8 @@ export async function getServerSideProps() {
       id: fixDate(todays_date),
       data: Object.keys(hourly).map((key) => ({
         x: HOUR_MAP[key],
-        y: hourly[key],
-      })),
+        y: hourly[key]
+      }))
     });
   }, []);
 
