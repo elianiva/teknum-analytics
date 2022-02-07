@@ -1,10 +1,13 @@
 import styles from "#/styles/nav.module.css";
 import Link from "next/link";
+import { useMediaQuery } from "#/utils/mediaQuery";
 
 export default function Nav({ pages, active }) {
+  const { isMobile } = useMediaQuery();
+  
   return (
     <nav className={styles.box__nav}>
-      {pages.map(({ name, route }, idx) => (
+      {pages.map(({ icon, name, route }, idx) => (
         <Link key={idx} href={route}>
           <a
             className={[
@@ -12,7 +15,7 @@ export default function Nav({ pages, active }) {
               active === route && styles.nav__item_active,
             ].join(" ")}
           >
-            <span>{name}</span>
+            <span>{`${icon} ${!isMobile ? name : ''}`}</span>
           </a>
         </Link>
       ))}
