@@ -1,6 +1,7 @@
 import { BASE_URL } from "#/utils/constant";
 import { get, set } from "#/utils/cache";
 import { getMedal } from "#/utils/medal";
+import { classNames } from "utils/styles";
 import styles from "#/styles/users.module.css";
 
 export default function Users({ data }) {
@@ -10,7 +11,7 @@ export default function Users({ data }) {
         <tr>
           <th className={styles.list__header}>No</th>
           <th className={styles.list__header}>Name</th>
-          <th className={styles.list__header}>Messages</th>
+          <th className={classNames(styles.list__header, styles.frozen_column)}>Messages</th>
         </tr>
       </thead>
       <tbody>
@@ -35,7 +36,7 @@ export default function Users({ data }) {
                 {getMedal(idx + 1)}
               </span>
             </td>
-            <td className={styles.list__score}>
+            <td className={classNames(styles.list__score, styles.frozen_column)}>
               <span>💬 {counter}</span>
             </td>
           </tr>
