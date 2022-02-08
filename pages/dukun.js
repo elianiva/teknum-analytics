@@ -2,6 +2,7 @@ import { BASE_URL } from "#/utils/constant";
 import { get, set } from "#/utils/cache";
 import { getMedal } from "#/utils/medal";
 import styles from "#/styles/users.module.css";
+import { classNames } from "#/utils/styles";
 
 export default function Dukun({ data }) {
   return (
@@ -10,7 +11,7 @@ export default function Dukun({ data }) {
         <tr>
           <th className={styles.list__header}>No</th>
           <th className={styles.list__header}>Name</th>
-          <th className={styles.list__header}>Points</th>
+          <th className={classNames(styles.list__header, styles.frozen_column)}>Points</th>
         </tr>
       </thead>
       <tbody>
@@ -35,7 +36,7 @@ export default function Dukun({ data }) {
                 {getMedal(idx + 1)}
               </span>
             </td>
-            <td className={styles.list__score}>
+            <td className={classNames(styles.list__score, styles.frozen_column)}>
               <span>🪙 {points}</span>
             </td>
           </tr>

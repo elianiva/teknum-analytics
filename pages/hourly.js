@@ -3,13 +3,39 @@ import { fixDate } from "#/utils/fixDate";
 import { get, set } from "#/utils/cache";
 import { BASE_URL } from "#/utils/constant";
 import styles from "#/styles/tooltip.module.css";
+import { useMediaQuery } from "#/utils/mediaQuery";
+
+const customRenderTicks = ({ opacity, textAnchor, textBaseline, textX, textY, value, x, y, tickIndex }) => {
+  // just render some of them so doesn't look crowded on mobile view
+  if (tickIndex % 4 !== 0) return null;
+
+  return (
+    <g transform={`translate(${x + 10},${y}) rotate(45)`} style={{ opacity }}>
+      <text
+        alignmentBaseline={textBaseline}
+        textAnchor={textAnchor}
+        transform={`translate(${textX},${textY})`}
+      >
+        {value}
+      </text>
+    </g>
+  );
+};
 
 export default function Hourly({ data }) {
+  const { isMobile } = useMediaQuery();
+
+  const marginProps = isMobile
+    ? { top: 20, right: 10, bottom: 40, left: 50 }
+    : { top: 20, right: 40, bottom: 40, left: 60 };
+
+  const renderTickProps = isMobile ? { renderTick: customRenderTicks } : {};
+
   return (
     <div style={{ height: "22rem" }}>
       <ResponsiveLine
         data={data}
-        margin={{ top: 20, right: 40, bottom: 40, left: 60 }}
+        margin={marginProps}
         xScale={{ type: "point" }}
         yScale={{
           type: "linear",
@@ -27,7 +53,8 @@ export default function Hourly({ data }) {
           tickPadding: 5,
           tickRotation: 45,
           legendOffset: 36,
-          legendPosition: "middle"
+          legendPosition: "middle",
+          ...renderTickProps,
         }}
         axisLeft={{
           orient: "left",

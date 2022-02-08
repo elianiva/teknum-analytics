@@ -59,3 +59,11 @@
   display: block;
   white-space: nowrap;
 }
+
+.frozen_column {
+  position: sticky;
+  z-index: 1;
+  right: -15px;
+  padding: 0 15px;
+  background: white;
+}
