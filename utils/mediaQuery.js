@@ -7,17 +7,15 @@ const breakpoints = {
 export const useMediaQuery = () => {
   const [matches, setMatches] = useState({});
 
-  // setup initial
-  useEffect(() => {
-    setMatches({ isMobile: window.matchMedia(`(max-width: ${breakpoints.isMobile}px)`).matches })
-  }, [])
-  
-  // setup on resize
   useEffect(() => {
     const listener = () => {
       setMatches({ isMobile: window.innerWidth <= breakpoints.isMobile });
     };
+
+    // adjust on initial render
+    listener()
     
+    // adjust on resize
     window.addEventListener("resize", listener);
 
     return () => window.removeEventListener("resize", listener);
