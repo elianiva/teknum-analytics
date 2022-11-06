@@ -1,8 +1,8 @@
 import { ResponsiveTimeRange } from "@nivo/calendar";
-import { fixDate } from "#/utils/fixDate";
-import { get, set } from "#/utils/cache";
-import { BASE_URL } from "#/utils/constant";
-import { useMediaQuery } from "#/utils/mediaQuery";
+import { fixDate } from "~/utils/fixDate";
+import { get, set } from "~/utils/cache";
+import { BASE_URL } from "~/utils/constant";
+import { useMediaQuery } from "~/utils/mediaQuery";
 
 export default function Calendar({ data: { sortedDaily, start, end } }) {
   const { isMobile } = useMediaQuery();

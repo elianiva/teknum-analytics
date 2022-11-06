@@ -1,8 +1,8 @@
-import { BASE_URL } from "#/utils/constant";
-import { get, set } from "#/utils/cache";
-import { getMedal } from "#/utils/medal";
-import { classNames } from "utils/styles";
-import styles from "#/styles/users.module.css";
+import { BASE_URL } from "~/utils/constant";
+import { get, set } from "~/utils/cache";
+import { getMedal } from "~/utils/medal";
+import { classNames } from "~/utils/styles";
+import styles from "~/styles/users.module.css";
 
 export default function Users({ data }) {
   return (

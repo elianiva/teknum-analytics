@@ -1,11 +1,17 @@
 import { useState, useEffect } from "react";
 
+type Matches = {
+  isMobile: boolean;
+};
+
 const breakpoints = {
   isMobile: 480,
 };
 
 export const useMediaQuery = () => {
-  const [matches, setMatches] = useState({});
+  const [matches, setMatches] = useState<Matches>({
+    isMobile: false,
+  });
 
   useEffect(() => {
     const listener = () => {
@@ -13,8 +19,8 @@ export const useMediaQuery = () => {
     };
 
     // adjust on initial render
-    listener()
-    
+    listener();
+
     // adjust on resize
     window.addEventListener("resize", listener);
 

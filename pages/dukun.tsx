@@ -1,8 +1,8 @@
-import { BASE_URL } from "#/utils/constant";
-import { get, set } from "#/utils/cache";
-import { getMedal } from "#/utils/medal";
-import styles from "#/styles/users.module.css";
-import { classNames } from "#/utils/styles";
+import { BASE_URL } from "~/utils/constant";
+import { get, set } from "~/utils/cache";
+import { getMedal } from "~/utils/medal";
+import styles from "~/styles/users.module.css";
+import { classNames } from "~/utils/styles";
 
 export default function Dukun({ data }) {
   return (

@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
-import Nav from "#/components/nav";
-import SEO from "#/components/seo";
-import styles from "#/styles/index.module.css";
-import "#/styles/globals.css";
+import Nav from "~/components/nav";
+import SEO from "~/components/seo";
+import styles from "~/styles/index.module.css";
+import "~/styles/globals.css";
 import "@fontsource/rubik/400.css";
 import "@fontsource/rubik/600.css";
 import { useEffect, useState } from "react";

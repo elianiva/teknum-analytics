@@ -1,9 +1,9 @@
 import { ResponsiveLine } from "@nivo/line";
-import { fixDate } from "#/utils/fixDate";
-import { get, set } from "#/utils/cache";
-import { BASE_URL } from "#/utils/constant";
-import styles from "#/styles/tooltip.module.css";
-import { useMediaQuery } from "#/utils/mediaQuery";
+import { fixDate } from "~/utils/fixDate";
+import { get, set } from "~/utils/cache";
+import { BASE_URL } from "~/utils/constant";
+import styles from "~/styles/tooltip.module.css";
+import { useMediaQuery } from "~/utils/mediaQuery";
 
 const customRenderTicks = ({ opacity, textAnchor, textBaseline, textX, textY, value, x, y, tickIndex }) => {
   // just render some of them so doesn't look crowded on mobile view
