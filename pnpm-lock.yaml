@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@fontsource/rubik': ^4.5.11
+  '@nivo/axes': ^0.80.0
   '@nivo/calendar': ^0.80.0
   '@nivo/core': ^0.80.0
   '@nivo/line': ^0.80.0
@@ -24,6 +25,7 @@ dependencies:
   react-dom: 18.2.0_react@18.2.0
 
 devDependencies:
+  '@nivo/axes': 0.80.0_6zomopewppbkd5eeu2nbbcio3i
   '@nivo/core': 0.80.0_g5kln477lwx3caqucf3exzf3du
   '@nivo/tooltip': 0.80.0_wyuiu3ihipn7hpncy62nqhyrji
   '@types/react': 18.0.25
@@ -249,7 +251,6 @@ packages:
       react: 18.2.0
     transitivePeerDependencies:
       - react-dom
-    dev: false
 
   /@nivo/calendar/0.80.0_6zomopewppbkd5eeu2nbbcio3i:
     resolution: {integrity: sha512-UfBnfzdQs9tZz/APH8DqYnGBraqovyUr6S5zxKI0T+LX5RV9p7uEcz1mBIlbvwFudMWuuXBB6Jc7pqmwnn2ZpQ==}
@@ -359,7 +360,6 @@ packages:
       d3-time: 1.1.0
       d3-time-format: 3.0.0
       lodash: 4.17.21
-    dev: false
 
   /@nivo/tooltip/0.80.0_wyuiu3ihipn7hpncy62nqhyrji:
     resolution: {integrity: sha512-qGmrreRwnCsYjn/LAuwBtxBn/tvG8y+rwgd4gkANLBAoXd3bzJyvmkSe+QJPhUG64bq57ibDK+lO2pC48a3/fw==}
@@ -775,7 +775,6 @@ packages:
 
   /d3-time/1.1.0:
     resolution: {integrity: sha512-Xh0isrZ5rPYYdqhAVk8VLnMEidhz5aP7htAADH6MfzgmmicPkTo8LhkLxci61/lCB7n7UmE3bN0leRt+qvkLxA==}
-    dev: false
 
   /d3-time/2.1.1:
     resolution: {integrity: sha512-/eIQe/eR4kCQwq7yxi7z4c6qEXf2IYGcjoWB5OOQy4Tq9Uv39/947qlDcN2TLkiTzQWzvnsuYPB9TrWaNfipKQ==}
