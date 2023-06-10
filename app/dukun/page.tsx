@@ -1,17 +1,21 @@
-import { BASE_URL } from "#/utils/constant";
-import { get, set } from "#/utils/cache";
-import { getMedal } from "#/utils/medal";
-import styles from "#/styles/users.module.css";
-import { classNames } from "#/utils/styles";
+import { BASE_URL } from "~/utils/constant";
+import { get, set } from "~/utils/cache";
+import { getMedal } from "~/utils/medal";
+import styles from "~/styles/users.module.css";
+import { classNames } from "~/utils/styles";
 
-export default function Dukun({ data }) {
+export default async function DukunPage() {
+  const data = await getDukunData();
+
   return (
     <table className={styles.list}>
       <thead>
         <tr>
           <th className={styles.list__header}>No</th>
           <th className={styles.list__header}>Name</th>
-          <th className={classNames(styles.list__header, styles.frozen_column)}>Points</th>
+          <th className={classNames(styles.list__header, styles.frozen_column)}>
+            Points
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -36,7 +40,9 @@ export default function Dukun({ data }) {
                 {getMedal(idx + 1)}
               </span>
             </td>
-            <td className={classNames(styles.list__score, styles.frozen_column)}>
+            <td
+              className={classNames(styles.list__score, styles.frozen_column)}
+            >
               <span>🪙 {points}</span>
             </td>
           </tr>
@@ -46,17 +52,26 @@ export default function Dukun({ data }) {
   );
 }
 
-export async function getServerSideProps() {
-  const cached = get("dukun");
-  if (cached) {
-    return { props: { data: cached } };
-  }
+type Dukun = {
+  userID: number;
+  firstName: string;
+  lastName: string;
+  userName: string;
+  points: number;
+  master: boolean;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export async function getDukunData(): Promise<Dukun[]> {
+  const cached = get<Dukun[]>("dukun");
+  if (cached) return cached;
 
   const res = await fetch(`${BASE_URL}/dukun`);
-  const users = await res.json();
-  const sortedUsers = users.sort((a, b) => b.points - a.points);
+  const dukun = (await res.json()) as Dukun[];
+  const sortedDukun = dukun.sort((a, b) => b.points - a.points);
 
-  set("dukun", sortedUsers);
+  set("dukun", sortedDukun);
 
-  return { props: { data: sortedUsers } };
+  return sortedDukun;
 }

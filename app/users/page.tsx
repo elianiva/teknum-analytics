@@ -1,17 +1,21 @@
-import { BASE_URL } from "#/utils/constant";
-import { get, set } from "#/utils/cache";
-import { getMedal } from "#/utils/medal";
-import { classNames } from "utils/styles";
-import styles from "#/styles/users.module.css";
+import { BASE_URL } from "~/utils/constant";
+import { get, set } from "~/utils/cache";
+import { getMedal } from "~/utils/medal";
+import { classNames } from "~/utils/styles";
+import styles from "~/styles/users.module.css";
 
-export default function Users({ data }) {
+export default async function UsersPage() {
+  const data = await getUsersData();
+
   return (
     <table className={styles.list}>
       <thead>
         <tr>
           <th className={styles.list__header}>No</th>
           <th className={styles.list__header}>Name</th>
-          <th className={classNames(styles.list__header, styles.frozen_column)}>Messages</th>
+          <th className={classNames(styles.list__header, styles.frozen_column)}>
+            Messages
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -36,7 +40,9 @@ export default function Users({ data }) {
                 {getMedal(idx + 1)}
               </span>
             </td>
-            <td className={classNames(styles.list__score, styles.frozen_column)}>
+            <td
+              className={classNames(styles.list__score, styles.frozen_column)}
+            >
               <span>💬 {counter}</span>
             </td>
           </tr>
@@ -46,17 +52,26 @@ export default function Users({ data }) {
   );
 }
 
-export async function getServerSideProps() {
-  const cached = get("users");
-  if (cached) {
-    return { props: { data: cached } };
-  }
+type User = {
+  group_id: string;
+  user_id: string;
+  username: string;
+  display_name: string;
+  counter: number;
+  created_at: string;
+  updated_at: string;
+  joined_at: string;
+};
+
+async function getUsersData(): Promise<User[]> {
+  const cached = get<User[]>("users");
+  if (cached) return cached;
 
   const res = await fetch(`${BASE_URL}/users`);
-  const users = await res.json();
+  const users = (await res.json()) as User[];
   const sortedUsers = users.sort((a, b) => b.counter - a.counter);
 
   set("users", sortedUsers);
 
-  return { props: { data: sortedUsers } };
+  return sortedUsers;
 }
